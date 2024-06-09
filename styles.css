@@ -1,0 +1,17 @@
+.title-white {
+  color: white !important;
+}
+
+.slidev-page {
+  background-color: #faf5f4;
+}
+
+.normal-title-gradient, .gradient-header h1, .gradient-header h2 {
+  background-image: linear-gradient(45deg, #eb7c7c 10%, #d01c24 40%);
+  background-size: 100%;
+  -webkit-background-clip: text;
+  -moz-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -moz-text-fill-color: transparent;
+}
