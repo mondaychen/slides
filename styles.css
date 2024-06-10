@@ -15,3 +15,9 @@
   -webkit-text-fill-color: transparent;
   -moz-text-fill-color: transparent;
 }
+
+.figure-caption {
+  font-size: 0.6em;
+  color: #666;
+  @apply mt-2;
+}

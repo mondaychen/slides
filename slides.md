@@ -95,6 +95,10 @@ class: gradient-header
 
 # Motivation
 
+<!--
+Now, why did we build Fuji-Web?
+-->
+
 ---
 layout: two-cols
 ---
@@ -138,11 +142,23 @@ hideInToc: true
 
 # Chanllenges, Solutions & Learnings
 
+<!--
+Next, let's talk about the challenges we faced, the solutions we came up with, and the learnings we had.
+-->
+
 ---
 
 ## The architecture of Fuji-Web
 
 <img src="/tech-design.png" />
+
+<!--
+Before we dive into the challenges, let's take a look at the architecture of Fuji-Web.
+
+All of its code is written in TypeScript. React-based UI connected to the browser's extension API. It directly connects to the LLM API as its only "backend".
+
+When user start a task from the UI, the agent will gather information about the current web page through an observer component. It then talks to the LLM, decide what action to take, and then operate the web page through the actuator component. It repeats this loop until the task is done.
+-->
 
 ---
 
@@ -164,6 +180,15 @@ But why not use browser automation software (Puppeteer, Playwright, Selenium)?
 
 </v-click>
 
+<!--
+The first challenge we had was to build it as a Chrome Extension. In the diagram you just saw, the components are clearly separated. In a real chrome extension, the communication between different parts can be very tricky. Your code needs to run in at least 3 worlds (the web page, side panel UI, service worker), each of them has its own capabilities and limitations. 
+
+What is worse, the documentation is often very outdated. 
+
+I don't think you are here to listen to me complain today. So let's skip the details.
+
+But you may ask, why does it have to be an extension? Most other web agent implementation is using browser automation software.
+-->
 
 ---
 hideInToc: true
@@ -175,6 +200,12 @@ hideInToc: true
 - Agent Framework?
 - Fine tuning?
 - <del>Train our own model?</del>
+
+<!--
+The second challenge: how to make the agent work? There are a lot of buzz words about how you would use LLMs. Obviously I don't have to GPU to train my own model in this case, so we can cross that out.
+
+The real questions, how do we think about this problem
+-->
 
 ---
 
@@ -195,6 +226,14 @@ Source: [A Survey of Techniques for Maximizing LLM Performance](https://www.yout
   }
 </style>
 
+<!--
+I want to share this diagram I took from a talk OpenAI published on YouTube. It describes two main approaches you can think about when you optimize LLM performance: Context optimization and LLM optimization. Fine-tuning is LLM optimization, RAG is more context optimization, Prompt engineering is kinda of both. Apparently, these are NOT the only methods you can use, not even for Q&A applications.
+
+Next, I'd like to share what I built in Fuji-Web on both directions.
+
+Let's start with context optimization.
+-->
+
 ---
 
 # Challenge 2: Help LLM understand the web page (Context optimization)
@@ -204,6 +243,15 @@ Source: [A Survey of Techniques for Maximizing LLM Performance](https://www.yout
   - It can give us the coordinates, but they are often incorrect (hallucination)
   - It can give us the text on the web page, but it is not enough to identify the exact element
 
+<!--
+Now, here's the real second challenge.
+
+After some experiments on ChatGPT, we can find out that...
+
+...
+
+For example, you might tell you to click "like" button, but there might be multiple "like" button visible on the page. Also, many buttons use icons instead of text, like a bell icon means notifications.
+-->
 
 ---
 layout: default
@@ -211,9 +259,21 @@ layout: default
 
 ## Focus on the actions
 
+<v-clicks>
+
 - Basic actions/tools: click, type, scroll, etc.
 - How to segment the web page to find interactive elements? 
 - How to annotate the segments?
+
+</v-clicks>
+
+<!--
+Since GPT-4V has no problem reading the content from the screenshot, we only need to focus on the actual actions we need the agent to generate. There are not many of them: clicking, typing and scrolling are the most common ones. 
+
+Clicking usually only works on buttons and links, and typing on inputs. How do we find them?
+
+After we find them, in what form can we tell the LLM about it?
+-->
 
 ---
 layout: default
@@ -228,12 +288,21 @@ Use HTML semantics and WAI-ARIA roles to identify these interactive components a
 | amazon.com   | 534                                        | 547                                                        |
 | twitter.com  | 56                                         | 121                                                        |
 | github.com   | 1364                                       | 1446                                                       |
------
+
+<!--
+There are some interesting recent work on vision based segmentation on UI screenshots. But because we are working on web, there's a unique advantage: we have direct access to HTML, and HTML has semantics and ARIA roles. We can find interactive elements with them.
+-->
+
+---
 
 ### Getting information for icon-only buttons
 
 - Use the `aria-label` attribute
 - Use `<label>` elements, `name` and `placeholder` attributes of input elements
+
+<!--
+Similarly, we can gather additional information for those elements, especially when a button is icon-only.
+-->
 
 ---
 layout: default
@@ -242,7 +311,17 @@ layout: default
 ### Overlay style annotation (Set-of-Mark)
 
 - Overlay style annotation is more intuitive
-- However, it can cover the content
+- However, it can cover the content on the web page
+
+<img src="https://som-gpt4v.github.io/website/img/teaser.png" width="70%" />
+
+<!--
+Now that we've found the interactive elements, how do we communicate with the LLM about them?
+
+You might have heard of this prompting technique for vision language models called set of mark prompting. The idea is you can just trace the border of an object and write a label on it. Then the LLM can talk back to you with the label. Pretty smart right?
+
+However, on web page it can cover the content. For small buttons, the text cannot be seen and the LLM cannot tell what it does!
+-->
 
 ---
 layout: default
@@ -253,6 +332,12 @@ layout: default
 - Less intrusive, but can cause confusion
 - Can still block the content
 
+<img src="/tooltip.jpg" width="80%" class="mt-2" />
+
+<!--
+I also experimented with this kind of tooltip style annotation. Good news: it does not cover the original button. Bad news: it sometimes cover the content nearby.
+-->
+
 ---
 layout: default
 ---
@@ -262,6 +347,12 @@ layout: default
 - [UFO(**U**I-**Fo**cused agent for Windows)](https://arxiv.org/pdf/2402.07939) is a paper published by Microsoft Research in Feb 2024
 
 <img src="/ufo-input.jpg" width="80%" class="mt-2" />
+
+<!--
+Eventually, this UFO paper from MicroSoft gave me an idea. If the annotation covers the content, we can send a clean screenshot along with it!
+
+It's very simple now that we talk about it, but it was truly a breakthrough for Fuji when I found this paper.
+-->
 
 ---
 
@@ -396,7 +487,7 @@ if (params.usePrefill && !rawResponse.startsWith(prefillText)) {
 ```
 ````
 
---- 
+---
 
 # Challenge 4: Maintain code quality
 
@@ -492,7 +583,7 @@ Arguments:
 
 ---
 
-## Benchmarks
+# Benchmarks
 
 We compared Fuji-Web’s ability to successfully complete real-world tasks to [WebVoyager](https://arxiv.org/abs/2401.13919) using their proposed benchmarks. As of today, we have finished running and evaluating the tasks on 7 websites, and observe compelling quality and performance. Results are shown in the following table:
 
@@ -572,6 +663,7 @@ We compared Fuji-Web’s ability to successfully complete real-world tasks to [W
   </tr>
 </table>
 
+<figcaption class="figure-caption">Table: The main results for Fuji-web. GPT-4 (all tools) and WebVoyager success rates are reported in the WebVoyager paper (last revised Feb 29 2024, using GPT-4V model). Fuji-web was benchmarked using the GPT-4o model.</figcaption>
 
 
 ---
