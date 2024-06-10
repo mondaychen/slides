@@ -41,7 +41,7 @@ hideInToc: true
 </div>
 
 <!--
-The last comment block of each slide will be treated as slide notes. It will be visible and editable in Presenter Mode along with the slide. [Read more in the docs](https://sli.dev/guide/syntax.html#notes)
+Good luck with your presentation! You can do this! 🚀
 -->
 
 ---
@@ -53,6 +53,10 @@ class: gradient-header
 # Table of contents!
 
 <Toc maxDepth="1"></Toc>
+
+<!--
+We will talk about these topics today.
+-->
 
 
 ---
@@ -129,6 +133,7 @@ We have demonstrated the challenges of attaining the level of sophisticated reas
 
 ---
 layout: section
+hideInToc: true
 ---
 
 # Chanllenges, Solutions & Learnings
@@ -303,13 +308,36 @@ _(Left: without “top-layer element only” filter. Right: with “top-layer el
 
 # Challenge 3: Build an agent (LLM optimization)
 
-- Agent Framework ([Guide](https://www.promptingguide.ai/research/llm-agents))
-  - We use a customized ReAct agent in Fuji-Web
+- Agent Framework ([LLM agent introductions](https://www.promptingguide.ai/research/llm-agents))
 - Guide the model to generate the desired output (not [outlines](https://github.com/outlines-dev/outlines))
-  - One-shot response example
-  - Prefilling responses for JSON format ([Anthropic's introduction](https://docs.anthropic.com/en/docs/prefill-claudes-response))
-    - It works well with **any** LLM model... and can outperform the model's own JSON mode??!
-    - Can be used to further guide the model to generate the desired output with particular structure
+
+---
+
+## Fuji-Web's Agent logic
+
+- We use a customized ReAct agent in Fuji-Web
+- ReAct is a simple framework based on a loop of observation, reasoning, and action
+- It naturally fits how we interact with the web: observe the web page, reason about the context, and take actions
+
+<v-click>
+<br>
+
+- Why no planning?
+  - Without further training or context, planning can be hard
+  - The Intenet is a rather unpredictable place
+  - There is no easy way to restore a previous state
+  - We might want to use a different strategy (outside of Fuji) for more complex workflows
+
+</v-click>
+
+---
+
+## Fuji-Web's JSON mode
+
+- One-shot response example
+- Prefilling responses for JSON format ([Anthropic's introduction](https://docs.anthropic.com/en/docs/prefill-claudes-response))
+  - It works well with **any** LLM model... and can outperform the model provider's own JSON mode??!
+  - Can be used to further guide the model to generate the desired output with particular structure
 
 
 ---
