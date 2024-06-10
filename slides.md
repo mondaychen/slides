@@ -1,44 +1,40 @@
 ---
 # try also 'default' to start simple
-theme: default
+theme: ./theme
+themeConfig:
+  primary: '#d01c24'
+colorSchema: light
 # random image from a curated Unsplash collection by Anthony
 # like them? see https://unsplash.com/collections/94734566/slidev
-background: https://cover.sli.dev
-# some information about your slides, markdown enabled
-title: Welcome to Slidev
-info: |
-  ## Slidev Starter Template
-  Presentation slides for developers.
-
-  Learn more at [Sli.dev](https://sli.dev)
+background: https://images.unsplash.com/photo-1576675466684-456bcdeccfbf?q=80&w=3540&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
 # apply any unocss classes to the current slide
-class: text-center
+class: "text-center"
 # https://sli.dev/custom/highlighters.html
 highlighter: shiki
-# https://sli.dev/guide/drawing
-drawings:
-  persist: false
-# slide transition: https://sli.dev/guide/animations#slide-transitions
+# some information about the slides, markdown enabled
+info: |
+  ## Fuji-web Talk
+  Fuji-Web is an intelligent AI partner that understands the user’s intent, navigates websites autonomously, and executes tasks on the user’s behalf while explaining each action step.
 transition: slide-left
-# enable MDC Syntax: https://sli.dev/guide/syntax#mdc-syntax
+title: Introducing Fuji-Web
 mdc: true
+hideInToc: true
 ---
 
-# Welcome to Slidev
-
-Presentation slides for developers
+<h1 class="title-white">Introducing Fuji-Web</h1>
 
 <div class="pt-12">
   <span @click="$slidev.nav.next" class="px-2 py-1 rounded cursor-pointer" hover="bg-white bg-opacity-10">
-    Press Space for next page <carbon:arrow-right class="inline"/>
+    Start the tour <carbon:arrow-right class="inline"/>
   </span>
 </div>
 
-<div class="abs-br m-6 flex gap-2">
-  <button @click="$slidev.nav.openInEditor()" title="Open in Editor" class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
-    <carbon:edit />
-  </button>
-  <a href="https://github.com/slidevjs/slidev" target="_blank" alt="GitHub" title="Open in GitHub"
+<div class="abs-br m-6 flex gap-1">
+  <a href="https://blog.normalcomputing.ai/posts/2024-05-22-introducing-fuji-web/fuji-web.html" target="_blank" alt="Blog Post" title="View blog post"
+    class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
+    <carbon-blog />
+  </a>
+  <a href="https://github.com/normal-computing/fuji-web" target="_blank" alt="GitHub" title="Open in GitHub"
     class="text-xl slidev-icon-btn opacity-50 !border-none !hover:text-white">
     <carbon-logo-github />
   </a>
@@ -49,589 +45,521 @@ The last comment block of each slide will be treated as slide notes. It will be 
 -->
 
 ---
-transition: fade-out
+layout: default
+hideInToc: true
+class: gradient-header
 ---
 
-# What is Slidev?
+# Table of contents!
 
-Slidev is a slides maker and presenter designed for developers, consist of the following features
+<Toc maxDepth="1"></Toc>
 
-- 📝 **Text-based** - focus on the content with Markdown, and then style them later
-- 🎨 **Themable** - theme can be shared and used with npm packages
-- 🧑‍💻 **Developer Friendly** - code highlighting, live coding with autocompletion
-- 🤹 **Interactive** - embedding Vue components to enhance your expressions
-- 🎥 **Recording** - built-in recording and camera view
-- 📤 **Portable** - export into PDF, PNGs, or even a hostable SPA
-- 🛠 **Hackable** - anything possible on a webpage
-
-<br>
-<br>
-
-Read more about [Why Slidev?](https://sli.dev/guide/why)
-
-<!--
-You can have `style` tag in markdown to override the style for the current page.
-Learn more: https://sli.dev/guide/syntax#embedded-styles
--->
-
-<style>
-h1 {
-  background-color: #2B90B6;
-  background-image: linear-gradient(45deg, #4EC5D4 10%, #146b8c 20%);
-  background-size: 100%;
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  -moz-text-fill-color: transparent;
-}
-</style>
-
-<!--
-Here is another comment.
--->
 
 ---
-transition: slide-up
-level: 2
+layout: default
+class: gradient-header
 ---
 
-# Navigation
+# Demo
 
-Hover on the bottom-left corner to see the navigation's controls panel, [learn more](https://sli.dev/guide/navigation.html)
+<SlidevVideo v-click controls style="width: 80%">
+  <source src="https://storage.googleapis.com/normal-blog-artifacts/fuji-web/FujiWebFinal.mp4" type="video/mp4" />
+  <p>
+    Your browser does not support videos. You may download it
+    <a href="https://storage.googleapis.com/normal-blog-artifacts/fuji-web/FujiWebFinal.mp4">here</a>.
+  </p>
+</SlidevVideo>
 
-## Keyboard Shortcuts
+---
+layout: default
+class: gradient-header
+---
 
-|     |     |
-| --- | --- |
-| <kbd>right</kbd> / <kbd>space</kbd>| next animation or slide |
-| <kbd>left</kbd>  / <kbd>shift</kbd><kbd>space</kbd> | previous animation or slide |
-| <kbd>up</kbd> | previous slide |
-| <kbd>down</kbd> | next slide |
+# Fun facts about Fuji-Web
 
-<!-- https://sli.dev/guide/animations.html#click-animations -->
-<img
-  v-click
-  class="absolute -bottom-9 -left-7 w-80 opacity-50"
-  src="https://sli.dev/assets/arrow-bottom-left.svg"
-  alt=""
-/>
-<p v-after class="absolute bottom-23 left-45 opacity-30 transform -rotate-10">Here!</p>
+- 🥇 **First of its kind** - Fuji-Web is the first ever web agent based on multi-modal model (first PoC demo on Nov 7 2023)
+- 🏆 **State-of-the-art** - Fuji-Web achieved highest scores in a benchmark measuring web agent's ability to perform real-world tasks
+- ⭐ **Star collector** - Over 100 GitHub stars in the first 24 hours of open-source release
+- 👨‍🦯 **Accessible** - Fuji-Web has built-in features to make it a useful tool for visually impaired people
+- 🔑 **Captcha Cracker** - Fuji-Web can often solve text-based Captcha challenge with a few tries
+
+
+---
+layout: section
+class: gradient-header
+---
+
+# Motivation
 
 ---
 layout: two-cols
-layoutClass: gap-16
 ---
 
-# Table of contents
+<h2 class="normal-title-solid">Product | <img src="/normal-logo.png" width="100px" style="display: inline-block; margin-top: -2px" /></h2>
 
-You can use the `Toc` component to generate a table of contents for your slides:
+We’ve been enabling complex workflow augmentation for some of the most high-stakes industrial and advanced manufacturing applications around the globe.
 
-```html
-<Toc minDepth="1" maxDepth="1"></Toc>
-```
+<br>
+<br>
 
-The title will be inferred from your slide content, or you can override it with `title` and `level` in your frontmatter.
+- We believe AI agents will become highly capable assistants and transform how we interact with computers 
+- We want to create an end-to-end system that can work across often clunky internal enterprise tools and diverse web environments (Jira, internal wikis, operator notes, SOPs, and specifications)
 
 ::right::
 
-<Toc v-click minDepth="1" maxDepth="2"></Toc>
+<img src="/product-1.jpg" class="ml-2" />
+<img src="/product-2.jpg" class="mt-1 ml-2" />
 
 ---
-layout: image-right
-image: https://cover.sli.dev
+layout: default
 ---
 
-# Code
+<h2 class="normal-title-solid">Research | <img src="/normal-logo.png" width="100px" style="display: inline-block; margin-top: -2px" /></h2>
 
-Use code snippets and get the highlighting directly, and even types hover![^1]
+We have demonstrated the challenges of attaining the level of sophisticated reasoning and calibrated uncertainty-awareness required for decision-making in these high-stakes environments.
 
-```ts {all|5|7|7-8|10|all} twoslash
-// TwoSlash enables TypeScript hover information
-// and errors in markdown code blocks
-// More at https://shiki.style/packages/twoslash
-
-import { computed, ref } from 'vue'
-
-const count = ref(0)
-const doubled = computed(() => count.value * 2)
-
-doubled.value = 2
-```
-
-<arrow v-click="[4, 5]" x1="350" y1="310" x2="195" y2="334" color="#953" width="2" arrowSize="1" />
-
-<!-- This allow you to embed external code blocks -->
-<<< @/snippets/external.ts#snippet
-
-<!-- Footer -->
-[^1]: [Learn More](https://sli.dev/guide/syntax.html#line-highlighting)
-
-<!-- Inline style -->
-<style>
-.footnotes-sep {
-  @apply mt-5 opacity-10;
-}
-.footnotes {
-  @apply text-sm opacity-75;
-}
-.footnote-backref {
-  display: none;
-}
-</style>
-
-<!--
-Notes can also sync with clicks
-
-[click] This will be highlighted after the first click
-
-[click] Highlighted with `count = ref(0)`
-
-[click:3] Last click (skip two clicks)
--->
-
----
-level: 2
----
-
-# Shiki Magic Move
-
-Powered by [shiki-magic-move](https://shiki-magic-move.netlify.app/), Slidev supports animations across multiple code snippets.
-
-Add multiple code blocks and wrap them with <code>````md magic-move</code> (four backticks) to enable the magic move. For example:
-
-````md magic-move
-```ts {*|2|*}
-// step 1
-const author = reactive({
-  name: 'John Doe',
-  books: [
-    'Vue 2 - Advanced Guide',
-    'Vue 3 - Basic Guide',
-    'Vue 4 - The Mystery'
-  ]
-})
-```
-
-```ts {*|1-2|3-4|3-4,8}
-// step 2
-export default {
-  data() {
-    return {
-      author: {
-        name: 'John Doe',
-        books: [
-          'Vue 2 - Advanced Guide',
-          'Vue 3 - Basic Guide',
-          'Vue 4 - The Mystery'
-        ]
-      }
-    }
-  }
-}
-```
-
-```ts
-// step 3
-export default {
-  data: () => ({
-    author: {
-      name: 'John Doe',
-      books: [
-        'Vue 2 - Advanced Guide',
-        'Vue 3 - Basic Guide',
-        'Vue 4 - The Mystery'
-      ]
-    }
-  })
-}
-```
-
-Non-code blocks are ignored.
-
-```vue
-<!-- step 4 -->
-<script setup>
-const author = {
-  name: 'John Doe',
-  books: [
-    'Vue 2 - Advanced Guide',
-    'Vue 3 - Basic Guide',
-    'Vue 4 - The Mystery'
-  ]
-}
-</script>
-```
-````
-
----
-
-# Components
-
-<div grid="~ cols-2 gap-4">
-<div>
-
-You can use Vue components directly inside your slides.
-
-We have provided a few built-in components like `<Tweet/>` and `<Youtube/>` that you can use directly. And adding your custom components is also super easy.
-
-```html
-<Counter :count="10" />
-```
-
-<!-- ./components/Counter.vue -->
-<Counter :count="10" m="t-4" />
-
-Check out [the guides](https://sli.dev/builtin/components.html) for more.
-
-</div>
-<div>
-
-```html
-<Tweet id="1390115482657726468" />
-```
-
-<Tweet id="1390115482657726468" scale="0.65" />
-
-</div>
-</div>
-
-<!--
-Presenter note with **bold**, *italic*, and ~~striked~~ text.
-
-Also, HTML elements are valid:
-<div class="flex w-full">
-  <span style="flex-grow: 1;">Left content</span>
-  <span>Right content</span>
-</div>
--->
-
----
-class: px-20
----
-
-# Themes
-
-Slidev comes with powerful theming support. Themes can provide styles, layouts, components, or even configurations for tools. Switching between themes by just **one edit** in your frontmatter:
-
-<div grid="~ cols-2 gap-2" m="t-2">
-
-```yaml
----
-theme: default
----
-```
-
-```yaml
----
-theme: seriph
----
-```
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-default/01.png?raw=true" alt="">
-
-<img border="rounded" src="https://github.com/slidevjs/themes/blob/main/screenshots/theme-seriph/01.png?raw=true" alt="">
-
-</div>
-
-Read more about [How to use a theme](https://sli.dev/themes/use.html) and
-check out the [Awesome Themes Gallery](https://sli.dev/themes/gallery.html).
-
----
-
-# Clicks Animations
-
-You can add `v-click` to elements to add a click animation.
-
-<div v-click>
-
-This shows up when you click the slide:
-
-```html
-<div v-click>This shows up when you click the slide.</div>
-```
-
-</div>
+<img src="https://storage.googleapis.com/posteriors/docs_landing.png" width="50%" style="mix-blend-mode: multiply;" />
 
 <br>
+<br>
+
+- We want our AI to be able to act after it _reasons_
+- We want to understand the challenges in building AI systems working in complex environments
+
+
+---
+layout: section
+---
+
+# Chanllenges, Solutions & Learnings
+
+---
+
+## The architecture of Fuji-Web
+
+<img src="/tech-design.png" />
+
+---
+
+# Challenge 1: Building Chrome Extension 
+
+<div v-click>
+We'll skip this part for now 😢
+</div>
 
 <v-click>
 
-The <span v-mark.red="3"><code>v-mark</code> directive</span>
-also allows you to add
-<span v-mark.circle.orange="4">inline marks</span>
-, powered by [Rough Notation](https://roughnotation.com/):
+But why not use browser automation software (Puppeteer, Playwright, Selenium)?
 
-```html
-<span v-mark.underline.orange>inline markers</span>
-```
+- Chrome extension is easier for users to install
+- Automation softwares are treated as bots by websites
+- Users can use their own Chrome profiles: exsiting sessions, cookies, etc.
+- Users can use it anywhere anytime
+
 
 </v-click>
 
-<div mt-20 v-click>
 
-[Learn More](https://sli.dev/guide/animations#click-animations)
+---
+hideInToc: true
+---
 
-</div>
+# Challenge 2: How to... make it work?
+
+- Prompt engineering?
+- Agent Framework?
+- Fine tuning?
+- <del>Train our own model?</del>
 
 ---
 
-# Motions
+## Two main approaches
 
-Motion animations are powered by [@vueuse/motion](https://motion.vueuse.org/), triggered by `v-motion` directive.
-
-```html
-<div
-  v-motion
-  :initial="{ x: -80 }"
-  :enter="{ x: 0 }"
-  :click-3="{ x: 80 }"
-  :leave="{ x: 1000 }"
->
-  Slidev
+<div v-click.hide>
+  <img src="/optimize-llm-openai-talk.jpg" width="80%" />
 </div>
-```
-
-<div class="w-60 relative">
-  <div class="relative w-40 h-40">
-    <img
-      v-motion
-      :initial="{ x: 800, y: -100, scale: 1.5, rotate: -50 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-square.png"
-      alt=""
-    />
-    <img
-      v-motion
-      :initial="{ y: 500, x: -100, scale: 2 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-circle.png"
-      alt=""
-    />
-    <img
-      v-motion
-      :initial="{ x: 600, y: 400, scale: 2, rotate: 100 }"
-      :enter="final"
-      class="absolute inset-0"
-      src="https://sli.dev/logo-triangle.png"
-      alt=""
-    />
-  </div>
-
-  <div
-    class="text-5xl absolute top-14 left-40 text-[#2B90B6] -z-1"
-    v-motion
-    :initial="{ x: -80, opacity: 0}"
-    :enter="{ x: 0, opacity: 1, transition: { delay: 2000, duration: 1000 } }">
-    Slidev
-  </div>
+<div v-after>
+  <img src="/optimize-llm-openai-talk-2.jpg" width="80%" />
 </div>
 
-<!-- vue script setup scripts can be directly used in markdown, and will only affects current page -->
-<script setup lang="ts">
-const final = {
-  x: 0,
-  y: 0,
-  rotate: 0,
-  scale: 1,
-  transition: {
-    type: 'spring',
-    damping: 10,
-    stiffness: 20,
-    mass: 2
+Source: [A Survey of Techniques for Maximizing LLM Performance](https://www.youtube.com/watch?v=ahnGLM-RC1Y&t=254s) -- OpenAI
+
+<style>
+  .slidev-vclick-hidden {
+    display: none;
   }
-}
-</script>
-
-<div
-  v-motion
-  :initial="{ x:35, y: 30, opacity: 0}"
-  :enter="{ y: 0, opacity: 1, transition: { delay: 3500 } }">
-
-[Learn More](https://sli.dev/guide/animations.html#motion)
-
-</div>
+</style>
 
 ---
 
-# LaTeX
+# Challenge 2: Help LLM understand the web page (Context optimization)
 
-LaTeX is supported out-of-box powered by [KaTeX](https://katex.org/).
+- GPT-4V can understand a screenshot of a web page & read its content
+- But it cannot tell us which part of the web page to interact with
+  - It can give us the coordinates, but they are often incorrect (hallucination)
+  - It can give us the text on the web page, but it is not enough to identify the exact element
 
-<br>
 
-Inline $\sqrt{3x-1}+(1+x)^2$
+---
+layout: default
+---
 
-Block
-$$ {1|3|all}
-\begin{array}{c}
+## Focus on the actions
 
-\nabla \times \vec{\mathbf{B}} -\, \frac1c\, \frac{\partial\vec{\mathbf{E}}}{\partial t} &
-= \frac{4\pi}{c}\vec{\mathbf{j}}    \nabla \cdot \vec{\mathbf{E}} & = 4 \pi \rho \\
+- Basic actions/tools: click, type, scroll, etc.
+- How to segment the web page to find interactive elements? 
+- How to annotate the segments?
 
-\nabla \times \vec{\mathbf{E}}\, +\, \frac1c\, \frac{\partial\vec{\mathbf{B}}}{\partial t} & = \vec{\mathbf{0}} \\
+---
+layout: default
+---
 
-\nabla \cdot \vec{\mathbf{B}} & = 0
+### Segmentation based on HTML semantics
 
-\end{array}
-$$
+Use HTML semantics and WAI-ARIA roles to identify these interactive components accurately
 
-<br>
+| Website      | Elements found with interactive HTML tags | Elements found with interactive HTML tags + WAI-ARIA roles |
+|--------------|--------------------------------------------|------------------------------------------------------------|
+| amazon.com   | 534                                        | 547                                                        |
+| twitter.com  | 56                                         | 121                                                        |
+| github.com   | 1364                                       | 1446                                                       |
+-----
 
-[Learn more](https://sli.dev/guide/syntax#latex)
+### Getting information for icon-only buttons
+
+- Use the `aria-label` attribute
+- Use `name` and `placeholder` attributes of input elements
+
+---
+layout: default
+---
+
+### Overlay style annotation (Set-of-Mark)
+
+- Overlay style annotation is more intuitive
+- However, it can cover the content
+
+---
+layout: default
+---
+
+### Tooltip style annotation
+
+- Less intrusive, but can cause confusion
+- Can still block the content
+
+---
+layout: default
+---
+
+### UFO-inspired style annotation
+
+- [UFO(**U**I-**Fo**cused agent for Windows)](https://arxiv.org/pdf/2402.07939) is a paper published by Microsoft Research in Feb 2024
+
+<img src="/ufo-input.jpg" width="80%" class="mt-2" />
 
 ---
 
-# Diagrams
+### Example of image annotation
 
-You can create diagrams / graphs from textual descriptions, directly in your Markdown.
+<img src="/annotation-example.png" width="95%" />
 
-<div class="grid grid-cols-4 gap-5 pt-4 -mb-6">
+---
 
-```mermaid {scale: 0.5, alt: 'A simple sequence diagram'}
-sequenceDiagram
-    Alice->John: Hello John, how are you?
-    Note over Alice,John: A typical interaction
+### Example of control information in text context
+
+```
+label = 4
+name = Home
+tagName = A
+role = link
+===
+label = 5
+name = Search and explore
+tagName = A
+role = link
+===
+label = 6
+name = Notifications (1 unread notification)
+tagName = A
+role = link
 ```
 
-```mermaid {theme: 'neutral', scale: 0.8}
-graph TD
-B[Text] --> C{Decision}
-C -->|One| D[Result 1]
-C -->|Two| E[Result 2]
+---
+
+### Keeps irrelevant elements off the list
+
+Context optimization is:
+
+- What the model needs to know
+- What the model **does not** need to know
+
+<img src="https://storage.googleapis.com/normal-blog-artifacts/fuji-web/x-side-by-side.jpg" width="80%" />
+
+_(Left: without “top-layer element only” filter. Right: with “top-layer element only” filter)_
+
+
+---
+
+# Challenge 3: Build an agent (LLM optimization)
+
+- Agent Framework ([Guide](https://www.promptingguide.ai/research/llm-agents))
+  - We use a customized ReAct agent in Fuji-Web
+- Guide the model to generate the desired output (not [outlines](https://github.com/outlines-dev/outlines))
+  - One-shot response example
+  - Prefilling responses for JSON format ([Anthropic's introduction](https://docs.anthropic.com/en/docs/prefill-claudes-response))
+    - It works well with **any** LLM model... and can outperform the model's own JSON mode??!
+    - Can be used to further guide the model to generate the desired output with particular structure
+
+
+---
+
+### Prefilling Example: JSON mode
+
+````md magic-move
+```typescript
+// ...
+messages.push({
+  role: "user",
+  content,
+});
+if (params.jsonMode) {
+  messages.push({
+    role: "assistant",
+    content: "{",
+  });
+}
+const completion = await openai.chat.completions.create({
+  model: model,
+  messages,
+  max_tokens: 1000,
+  temperature: 0,
+});
+let rawResponse = completion.choices[0].message?.content?.trim() ?? "";
+if (params.jsonMode && !rawResponse.startsWith("{")) {
+  rawResponse = "{" + rawResponse;
+}
+// ...
+```
+```typescript
+const prefillText = "{\n  \"thought\": \""; // expected ReAct response in JSON
+// ...
+messages.push({
+  role: "user",
+  content,
+});
+if (params.usePrefill) {
+  messages.push({
+    role: "assistant",
+    content: prefillText,
+  });
+}
+const completion = await openai.chat.completions.create({
+  model: model,
+  messages,
+  max_tokens: 1000,
+  temperature: 0,
+});
+let rawResponse = completion.choices[0].message?.content?.trim() ?? "";
+if (params.usePrefill && !rawResponse.startsWith(prefillText)) {
+  rawResponse = prefillText + rawResponse;
+}
+// ...
+```
+````
+
+--- 
+
+# Challenge 4: Maintain code quality
+
+- Agent development can be hard and slow since we don't have a (good) existing framework
+- We need to maintain code quality and ensure the system is robust
+
+---
+
+## A type-safe, robust system to provide agent tools
+
+### Schema definition
+
+```typescript
+// define tools
+// matches a JSON like this: {name: "setValue", args: {label: "17", value: "Joe Smith"}}
+export const setValueSchema = z.object({
+  name: z.literal("setValue"),
+  description: z
+    .literal(
+      "Focus on and set the value of an input element with the label on the annotation.",
+    )
+    .optional(),
+  args: z.object({
+    label: z.string(),
+    value: z.string(),
+  }),
+});
+// ...
+
+// define the union
+export const toolSchemaUnion = z.discriminatedUnion("name", [
+  clickSchema,
+  setValueSchema,
+  // ...
+]);
+export type ToolOperation = z.infer<typeof toolSchemaUnion>;
 ```
 
-```mermaid
-mindmap
-  root((mindmap))
-    Origins
-      Long history
-      ::icon(fa fa-book)
-      Popularisation
-        British popular psychology author Tony Buzan
-    Research
-      On effectiveness<br/>and features
-      On Automatic creation
-        Uses
-            Creative techniques
-            Strategic planning
-            Argument mapping
-    Tools
-      Pen and paper
-      Mermaid
+---
+
+### Parse the JSON response to ensure correct format
+
+You can parse the JSON response from the model:
+
+```typescript
+try {
+  operation = toolSchemaUnion.parse(response.action);
+} catch (err) {
+  const validationError = fromError(err);
+  // user friendly error message
+  throw new Error(validationError.toString());
+}
 ```
 
-```plantuml {scale: 0.7}
-@startuml
+Then you can:
 
-package "Some Group" {
-  HTTP - [First Component]
-  [Another Component]
-}
-
-node "Other Groups" {
-  FTP - [Second Component]
-  [First Component] --> FTP
-}
-
-cloud {
-  [Example 1]
-}
-
-database "MySql" {
-  folder "This is my folder" {
-    [Folder 3]
+```typescript
+switch (operation.name) {
+  case "scroll":
+    await scroll(domActions, action.args.value);
+  case "click": {
+    const success = await click(domActions, action.args.label);
+    if (!success) {
+      console.error(
+        "Unable to find element with label: ",
+        action.args.label,
+      );
+    }
+    break;
   }
-  frame "Foo" {
-    [Frame 4]
-  }
+  // ...
+  default:
+    console.error("Invalid action name", action);
 }
-
-[Another Component] --> [Example 1]
-[Example 1] --> [Folder 3]
-[Folder 3] --> [Frame 4]
-
-@enduml
 ```
-
-</div>
-
-[Learn More](https://sli.dev/guide/syntax.html#diagrams)
-
----
-foo: bar
-dragPos:
-  square: 691,33,167,_,-16
----
-
-# Draggable Elements
-
-Double-click on the draggable elements to edit their positions.
-
-<br>
-
-###### Directive Usage
-
-```md
-<img v-drag="'square'" src="https://sli.dev/logo.png">
-```
-
-<br>
-
-###### Component Usage
-
-```md
-<v-drag text-3xl>
-  <carbon:arrow-up />
-  Use the `v-drag` component to have a draggable container!
-</v-drag>
-```
-
-<v-drag pos="671,205,253,_,-15">
-  <div text-center text-3xl border border-main rounded>
-    Double-click me!
-  </div>
-</v-drag>
-
-<img v-drag="'square'" src="https://sli.dev/logo.png">
-
----
-src: ./pages/multiple-entries.md
-hide: false
----
 
 ---
 
-# Monaco Editor
+### Tool descriptions extract from schema to use in context
 
-Slidev provides built-in Monaco Editor support.
+```
+Name: click
+Description: Click on an element with the label on the annotation.
+Arguments:
+  - label (string)
 
-Add `{monaco}` to the code block to turn it into an editor:
-
-```ts {monaco}
-import { ref } from 'vue'
-import { emptyArray } from './external'
-
-const arr = ref(emptyArray(10))
+Name: setValue
+Description: Focus on and set the value of an input element with the label on the annotation.
+Arguments:
+  - label (string)
+  - value (string)
 ```
 
-Use `{monaco-run}` to create an editor that can execute the code directly in the slide:
+---
 
-```ts {monaco-run}
-import { version } from 'vue'
-import { emptyArray, sayHello } from './external'
+## Benchmarks
 
-sayHello()
-console.log(`vue ${version}`)
-console.log(emptyArray<number>(10).reduce(fib => [...fib, fib.at(-1)! + fib.at(-2)!], [1, 1]))
-```
+We compared Fuji-Web’s ability to successfully complete real-world tasks to [WebVoyager](https://arxiv.org/abs/2401.13919) using their proposed benchmarks. As of today, we have finished running and evaluating the tasks on 7 websites, and observe compelling quality and performance. Results are shown in the following table:
+
+
+<table class="table table-bordered">
+  <tr>
+   <th>
+   </th>
+   <th>Allrecipes
+   </th>
+   <th>ArXiv
+   </th>
+   <th>Apple
+   </th>
+   <th>Google Search
+   </th>
+   <th>BBC News
+   </th>
+   <th>GitHub
+   </th>
+   <th>Cambridge Dictionary
+   </th>
+  </tr>
+  <tr>
+   <th>GPT-4 (All Tools)
+   </th>
+   <td>11.1% 
+   </td>
+   <td>17.1% 
+   </td>
+   <td>44.2%
+   </td>
+   <td>60.5%
+   </td>
+   <td>9.5%
+   </td>
+   <td>48.8%
+   </td>
+   <td>25.6%
+   </td>
+  </tr>
+  <tr>
+   <th>WebVoyager
+   </th>
+   <td>53.3% 
+   </td>
+   <td>51.2%
+   </td>
+   <td><strong>65.1%</strong>
+   </td>
+   <td>76.7%
+   </td>
+   <td>61.9%
+   </td>
+   <td>63.4%
+   </td>
+   <td>65.1%
+   </td>
+  </tr>
+  <tr>
+   <th>Fuji-Web
+   </th>
+   <td><strong>64.4%</strong>
+   </td>
+   <td><strong>65.1%</strong>
+   </td>
+   <td>60.4%
+   </td>
+   <td><strong>81.4%</strong>
+   </td>
+   <td><strong>76.2%</strong>
+   </td>
+   <td><strong>73.2%</strong>
+   </td>
+   <td><strong>86.0%</strong>
+   </td>
+  </tr>
+</table>
+
+
+
+---
+
+# Roadmap
+
+- Expose API for easy integration with browser automation frameworks (e.g. Puppeteer, Playwright, Selenium)
+- Add support for more complex & cross-tab workflows
+- Add support for more browsing behaviors (select from dropdown, extract content from entire page etc.)
+- Add support for saving workflows
+- Add support for sharing workflows & instructions with others
+- Create wikipedia-like knowledge base where users can work together to create knowledge that can improve the Fuji-Web's performance
 
 ---
 layout: center
 class: text-center
 ---
 
-# Learn More
-
-[Documentations](https://sli.dev) · [GitHub](https://github.com/slidevjs/slidev) · [Showcases](https://sli.dev/showcases.html)
+# Questions?
