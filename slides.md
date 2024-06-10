@@ -228,7 +228,7 @@ Use HTML semantics and WAI-ARIA roles to identify these interactive components a
 ### Getting information for icon-only buttons
 
 - Use the `aria-label` attribute
-- Use `name` and `placeholder` attributes of input elements
+- Use `<label>` elements, `name` and `placeholder` attributes of input elements
 
 ---
 layout: default
@@ -317,7 +317,7 @@ _(Left: without “top-layer element only” filter. Right: with “top-layer el
 ### Prefilling Example: JSON mode
 
 ````md magic-move
-```typescript
+```typescript{all|6-11,19-21}
 // ...
 messages.push({
   role: "user",
@@ -341,7 +341,7 @@ if (params.jsonMode && !rawResponse.startsWith("{")) {
 }
 // ...
 ```
-```typescript
+```typescript{1,7-12,20-23}
 const prefillText = "{\n  \"thought\": \""; // expected ReAct response in JSON
 // ...
 messages.push({
